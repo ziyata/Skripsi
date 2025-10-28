@@ -9,13 +9,12 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.skripsi.R
 import com.example.skripsi.feature.transaksi.vm.TransaksiListViewModel
 import com.example.skripsi.feature.transaksi.vm.TransaksiListViewModelFactory
+import androidx.recyclerview.widget.RecyclerView
 
 class TransaksiListActivity : AppCompatActivity() {
-
     private lateinit var vm: TransaksiListViewModel
     private lateinit var adapter: TransaksiHeaderAdapter
 
@@ -23,41 +22,30 @@ class TransaksiListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transaksi_list)
 
-        val etSearch = findViewById<EditText>(R.id.etSearch)
+        val et = findViewById<EditText>(R.id.etSearch)
         val btnToday = findViewById<Button>(R.id.btnFilterToday)
         val rv = findViewById<RecyclerView>(R.id.rvTransaksi)
 
         vm = ViewModelProvider(this, TransaksiListViewModelFactory(this))[TransaksiListViewModel::class.java]
-
-        adapter = TransaksiHeaderAdapter { header ->
-            val intent = Intent(this, TransaksiDetailActivity::class.java).apply {
-                putExtra(TransaksiDetailActivity.EXTRA_HEADER_ID, header.id)
-                putExtra(TransaksiDetailActivity.EXTRA_TOTAL, header.total)
-                putExtra(TransaksiDetailActivity.EXTRA_METODE, header.metode)
-                putExtra(TransaksiDetailActivity.EXTRA_TANGGAL, header.tanggal)
-            }
-            startActivity(intent)
+        adapter = TransaksiHeaderAdapter { h ->
+            startActivity(Intent(this, TransaksiDetailActivity::class.java).apply {
+                putExtra(TransaksiDetailActivity.EXTRA_HEADER_ID, h.id)
+                putExtra(TransaksiDetailActivity.EXTRA_TOTAL, h.total)
+                putExtra(TransaksiDetailActivity.EXTRA_METODE, h.metode)
+                putExtra(TransaksiDetailActivity.EXTRA_TANGGAL, h.tanggal)
+            })
         }
-        rv.layoutManager = LinearLayoutManager(this)
-        rv.adapter = adapter
+        rv.layoutManager = LinearLayoutManager(this); rv.adapter = adapter
 
-        vm.filtered.observe(this) { list ->
-            adapter.submit(list)
-        }
+        vm.filtered.observe(this) { adapter.submit(it) }
 
-        etSearch.addTextChangedListener(object : TextWatcher {
+        et.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
             override fun afterTextChanged(s: Editable?) = Unit
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                vm.setQuery(s?.toString().orEmpty())
-            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { vm.setQuery(s?.toString().orEmpty()) }
         })
 
-        var todayOnly = false
-        btnToday.setOnClickListener {
-            todayOnly = !todayOnly
-            vm.setTodayOnly(todayOnly)
-            btnToday.text = if (todayOnly) "Semua" else "Hari ini"
-        }
+        var today = false
+        btnToday.setOnClickListener { today = !today; vm.setTodayOnly(today); btnToday.text = if (today) "Semua" else "Hari ini" }
     }
 }

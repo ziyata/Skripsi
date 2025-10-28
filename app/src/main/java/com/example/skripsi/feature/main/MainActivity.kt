@@ -8,6 +8,7 @@ import com.example.skripsi.feature.barang.ui.BarangActivity
 import com.example.skripsi.feature.checkout.ui.CheckoutActivity
 import com.example.skripsi.feature.prediksi.ui.PrediksiActivity
 import com.example.skripsi.feature.qr.QrActivity
+import com.example.skripsi.feature.transaksi.ui.TransaksiListActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -29,5 +30,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnCheckout.setOnClickListener {
             startActivity(Intent(this, CheckoutActivity::class.java))
         }
+        binding.btnPembelian.setOnClickListener {
+            startActivity(Intent(this, TransaksiListActivity::class.java))
+        }
+
     }
 }

@@ -17,6 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skripsi">
         <activity
+            android:name=".feature.checkout.ui.CheckoutActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".feature.checkout.ui.PilihBarangActivity"
+            android:exported="false"/>
+        <activity android:name=".feature.transaksi.ui.TransaksiListActivity"
+            android:exported="false"/>
+        <activity android:name=".feature.transaksi.ui.TransaksiDetailActivity"
+            android:exported="false"/>
+        <activity
             android:name=".feature.prediksi.ui.PrediksiActivity"
             android:exported="false" />
         <activity
@@ -26,22 +36,10 @@
             android:name=".feature.stok.ui.StockAdjustmentActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.transaksi.ui.TransaksiListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".feature.transaksi.ui.TransaksiDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".feature.checkout.ui.PilihBarangActivity"
-            android:exported="false" />
-        <activity
             android:name=".feature.qr.QrActivity"
             android:exported="false" />
         <activity
             android:name=".feature.barang.ui.BarangActivity"
-            android:exported="false" />
-        <activity
-            android:name=".feature.checkout.ui.CheckoutActivity"
             android:exported="false" />
         <activity
             android:name=".feature.main.MainActivity"

@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skripsi.data.entity.TransaksiHeaderEntity
 import com.example.skripsi.databinding.ItemTransaksiHeaderBinding
-import java.text.SimpleDateFormat
-import java.util.Locale
+import com.example.skripsi.core.util.CurrencyFormatter
+import com.example.skripsi.core.util.DateUtil
 
 class TransaksiHeaderAdapter(
     private val onClick: (TransaksiHeaderEntity) -> Unit
@@ -14,28 +14,20 @@ class TransaksiHeaderAdapter(
 
     private val data = mutableListOf<TransaksiHeaderEntity>()
 
-    fun submit(list: List<TransaksiHeaderEntity>) {
-        data.clear()
-        data.addAll(list)
-        notifyDataSetChanged()
-    }
+    fun submit(list: List<TransaksiHeaderEntity>) { data.apply { clear(); addAll(list) }; notifyDataSetChanged() }
 
     inner class VH(private val b: ItemTransaksiHeaderBinding) : RecyclerView.ViewHolder(b.root) {
         fun bind(row: TransaksiHeaderEntity) {
-            val fmt = SimpleDateFormat("dd MMM yyyy HH:mm", Locale("in","ID"))
-            b.tvTanggal.text = fmt.format(java.util.Date(row.tanggal))
+            b.tvTanggal.text = DateUtil.longToHuman(row.tanggal)
             b.tvMetodeStatus.text = "${row.metode} • ${row.status}"
-            b.tvTotal.text = "Rp %,d".format(Locale("in","ID"), row.total)
+            b.tvTotal.text = CurrencyFormatter.rupiah(row.total)
             b.root.setOnClickListener { onClick(row) }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val binding = ItemTransaksiHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return VH(binding)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        VH(ItemTransaksiHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(data[position])
-
     override fun getItemCount(): Int = data.size
 }
