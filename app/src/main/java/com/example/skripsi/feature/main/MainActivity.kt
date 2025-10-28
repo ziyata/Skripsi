@@ -8,6 +8,7 @@ import com.example.skripsi.feature.barang.ui.BarangActivity
 import com.example.skripsi.feature.checkout.ui.CheckoutActivity
 import com.example.skripsi.feature.prediksi.ui.PrediksiActivity
 import com.example.skripsi.feature.qr.QrActivity
+import com.example.skripsi.feature.stok.ui.StockAdjustmentActivity
 import com.example.skripsi.feature.transaksi.ui.TransaksiListActivity
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, BarangActivity::class.java))
         }
         binding.btnPrediksi.setOnClickListener {
-            startActivity(Intent(this, PrediksiActivity::class.java))
+            startActivity(Intent(this, StockAdjustmentActivity::class.java))
         }
         binding.btnQr.setOnClickListener {
             startActivity(Intent(this, QrActivity::class.java))
