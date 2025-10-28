@@ -1,37 +1,84 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
+    android:paddingTop="@dimen/status_bar_padding"
+    android:clipToPadding="false">
 
-    <Button
-        android:id="@+id/btnBarang"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kelola Barang" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/btnPembelian"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pembelian Barang" />
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:text="POS Skripsi"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnPrediksi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Prediksi Stok" />
+        <!-- Admin section -->
+        <TextView
+            android:id="@+id/tvAdminSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="Menu Admin"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnQr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Scan QR" />
+        <Button
+            android:id="@+id/btnBarang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kelola Barang" />
 
-    <Button
-        android:id="@+id/btnCheckout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Checkout dan Pembayaran" />
-</LinearLayout>
+        <Button
+            android:id="@+id/btnStockAdjustment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Penyesuaian Stok (IN/Adjust)" />
+
+        <Button
+            android:id="@+id/btnPrediksi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prediksi Stok" />
+
+        <Button
+            android:id="@+id/btnRiwayatTransaksi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Riwayat Transaksi" />
+
+        <!-- User section -->
+        <TextView
+            android:id="@+id/tvUserSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="Menu User"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnScanQr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scan QR" />
+
+        <Button
+            android:id="@+id/btnCheckout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Checkout (Kasir)" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Logout" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

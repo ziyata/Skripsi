@@ -10,6 +10,7 @@ import com.example.skripsi.data.dao.PaymentDao
 import com.example.skripsi.data.dao.StockMutationDao
 import com.example.skripsi.data.dao.TransaksiDetailDao
 import com.example.skripsi.data.dao.TransaksiHeaderDao
+import com.example.skripsi.data.dao.UserDao
 import com.example.skripsi.data.entity.BarangEntity
 import com.example.skripsi.data.entity.OrderDetailEntity
 import com.example.skripsi.data.entity.OrderHeaderEntity
@@ -17,6 +18,7 @@ import com.example.skripsi.data.entity.PaymentEntity
 import com.example.skripsi.data.entity.StockMutationEntity
 import com.example.skripsi.data.entity.TransaksiDetailEntity
 import com.example.skripsi.data.entity.TransaksiHeaderEntity
+import com.example.skripsi.data.entity.UserEntity
 
 @Database(
     entities = [
@@ -26,12 +28,13 @@ import com.example.skripsi.data.entity.TransaksiHeaderEntity
         StockMutationEntity::class,
         OrderHeaderEntity::class,
         OrderDetailEntity::class,
-        PaymentEntity::class
+        PaymentEntity::class,
+        UserEntity::class
     ],
     version = 4,
     exportSchema = false
 )
-abstract class  AppDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun barangDao(): BarangDao
     abstract fun transaksiHeaderDao(): TransaksiHeaderDao
@@ -39,7 +42,7 @@ abstract class  AppDatabase : RoomDatabase() {
     abstract fun stockMutationDao(): StockMutationDao
     abstract fun orderDao(): OrderDao
     abstract fun paymentDao(): PaymentDao
-
+    abstract fun userDao(): UserDao
 
     companion object {
         @Volatile
