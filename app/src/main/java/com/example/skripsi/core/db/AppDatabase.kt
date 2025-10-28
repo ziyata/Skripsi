@@ -21,7 +21,6 @@ import com.example.skripsi.data.entity.TransaksiHeaderEntity
 @Database(
     entities = [
         BarangEntity::class,
-        TransaksiEntity::class,
         TransaksiHeaderEntity::class,
         TransaksiDetailEntity::class,
         StockMutationEntity::class,
@@ -35,7 +34,6 @@ import com.example.skripsi.data.entity.TransaksiHeaderEntity
 abstract class  AppDatabase : RoomDatabase() {
 
     abstract fun barangDao(): BarangDao
-    abstract fun transaksiDao(): TransaksiDao
     abstract fun transaksiHeaderDao(): TransaksiHeaderDao
     abstract fun transaksiDetailDao(): TransaksiDetailDao
     abstract fun stockMutationDao(): StockMutationDao

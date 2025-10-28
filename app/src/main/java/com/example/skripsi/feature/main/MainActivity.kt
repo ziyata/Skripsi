@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.skripsi.databinding.ActivityMainBinding
 import com.example.skripsi.feature.barang.ui.BarangActivity
 import com.example.skripsi.feature.checkout.ui.CheckoutActivity
-import com.example.skripsi.ui.pembelian.PembelianActivity
-import com.example.skripsi.ui.prediksi.PrediksiActivity
+import com.example.skripsi.feature.prediksi.ui.PrediksiActivity
 import com.example.skripsi.feature.qr.QrActivity
 
 class MainActivity : AppCompatActivity() {
@@ -20,9 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnBarang.setOnClickListener {
             startActivity(Intent(this, BarangActivity::class.java))
-        }
-        binding.btnPembelian.setOnClickListener {
-            startActivity(Intent(this, PembelianActivity::class.java))
         }
         binding.btnPrediksi.setOnClickListener {
             startActivity(Intent(this, PrediksiActivity::class.java))

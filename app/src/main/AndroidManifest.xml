@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -37,12 +36,6 @@
             android:exported="false" />
         <activity
             android:name=".feature.qr.QrActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.prediksi.PrediksiActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pembelian.PembelianActivity"
             android:exported="false" />
         <activity
             android:name=".feature.barang.ui.BarangActivity"
