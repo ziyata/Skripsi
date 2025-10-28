@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@android:color/white"
+    android:elevation="2dp">
+
+    <TextView
+        android:id="@+id/tvNamaBarang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvHargaBarang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rp 0"/>
+
+    <TextView
+        android:id="@+id/tvStokBarang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stok: 0"/>
+</LinearLayout>
