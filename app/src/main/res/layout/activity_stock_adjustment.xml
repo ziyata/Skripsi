@@ -5,6 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.prediksi.ui.PrediksiActivity">
+    tools:context=".feature.stok.ui.StockAdjustmentActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

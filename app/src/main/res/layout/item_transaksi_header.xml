@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvTanggal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="28 Okt 2025 10:00" />
+
+    <TextView
+        android:id="@+id/tvMetodeStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CASH • PAID" />
+
+    <TextView
+        android:id="@+id/tvTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rp 0"
+        android:textStyle="bold" />
+</LinearLayout>

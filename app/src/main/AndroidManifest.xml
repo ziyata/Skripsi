@@ -18,13 +18,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skripsi">
         <activity
-            android:name=".ui.transaksi.TransaksiDetailActivity"
+            android:name=".feature.prediksi.ui.PrediksiActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.pilihBarang.PilihBarangActivity"
+            android:name=".feature.stok.ui.StockHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.qr.QrActivity"
+            android:name=".feature.stok.ui.StockAdjustmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.transaksi.ui.TransaksiListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.transaksi.ui.TransaksiDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.checkout.ui.PilihBarangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.qr.QrActivity"
             android:exported="false" />
         <activity
             android:name=".ui.prediksi.PrediksiActivity"
@@ -33,13 +45,13 @@
             android:name=".ui.pembelian.PembelianActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.barang.BarangActivity"
+            android:name=".feature.barang.ui.BarangActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.checkout.CheckoutActivity"
+            android:name=".feature.checkout.ui.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".feature.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
