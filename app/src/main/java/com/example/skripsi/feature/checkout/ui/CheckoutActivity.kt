@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skripsi.R
 import com.example.skripsi.data.entity.BarangEntity
+import com.example.skripsi.databinding.ActivityCheckoutBinding
+import com.example.skripsi.databinding.ActivityLoginBinding
 import com.example.skripsi.feature.checkout.vm.CheckoutViewModel
 import com.example.skripsi.feature.checkout.vm.CheckoutViewModelFactory
 import com.example.skripsi.feature.transaksi.ui.TransaksiDetailActivity
@@ -23,10 +25,7 @@ class CheckoutActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CheckoutViewModel
     private lateinit var cartAdapter: CartAdapter
-    private lateinit var tvTotal: TextView
-    private lateinit var rvCart: RecyclerView
-    private lateinit var btnTambah: Button
-    private lateinit var btnBayar: Button
+    private lateinit var binding: ActivityCheckoutBinding
 
     private val pilihBarangLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -47,12 +46,9 @@ class CheckoutActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_checkout)
-
-        tvTotal = findViewById(R.id.tvTotal)
-        rvCart = findViewById(R.id.rvCart)
-        btnTambah = findViewById(R.id.btnTambahDariBarang)
-        btnBayar = findViewById(R.id.btnBayar)
+        binding = ActivityCheckoutBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         viewModel = ViewModelProvider(this, CheckoutViewModelFactory(this))[CheckoutViewModel::class.java]
 
@@ -61,29 +57,32 @@ class CheckoutActivity : AppCompatActivity() {
             onDecrease = { id -> viewModel.decrease(id) },
             onRemove = { id -> viewModel.removeFromCart(id) }
         )
-        rvCart.layoutManager = LinearLayoutManager(this)
-        rvCart.adapter = cartAdapter
 
-        viewModel.cart.observe(this) { list ->
-            val rows = list.map {
-                CartAdapter.Row(
-                    barangId = it.barang.id,
-                    nama = it.barang.nama,
-                    harga = it.barang.harga,
-                    qty = it.qty,
-                    subtotal = it.subtotal
-                )
+        binding.apply {
+            rvCart.layoutManager = LinearLayoutManager(this@CheckoutActivity)
+            rvCart.adapter = cartAdapter
+
+            viewModel.cart.observe(this@CheckoutActivity) { list ->
+                val rows = list.map {
+                    CartAdapter.Row(
+                        barangId = it.barang.id,
+                        nama = it.barang.nama,
+                        harga = it.barang.harga,
+                        qty = it.qty,
+                        subtotal = it.subtotal
+                    )
+                }
+                cartAdapter.submit(rows)
+                tvTotal.text = "Rp %,d".format(Locale("in","ID"), viewModel.total)
             }
-            cartAdapter.submit(rows)
-            tvTotal.text = "Rp %,d".format(Locale("in","ID"), viewModel.total)
-        }
 
-        btnTambah.setOnClickListener {
-            val intent = Intent(this, PilihBarangActivity::class.java)
-            pilihBarangLauncher.launch(intent)
-        }
+            btnTambahDariBarang.setOnClickListener {
+                val intent = Intent(this@CheckoutActivity, PilihBarangActivity::class.java)
+                pilihBarangLauncher.launch(intent)
+            }
 
-        btnBayar.setOnClickListener { showCashPaymentDialog() }
+            btnBayar.setOnClickListener { showCashPaymentDialog() }
+        }
     }
 
     private fun showCashPaymentDialog() {

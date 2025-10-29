@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skripsi.R
+import com.example.skripsi.databinding.ActivityTransaksiDetailBinding
 import com.example.skripsi.feature.transaksi.vm.TransaksiDetailViewModel
 import com.example.skripsi.feature.transaksi.vm.TransaksiDetailViewModelFactory
 import java.text.SimpleDateFormat
@@ -22,43 +23,41 @@ class TransaksiDetailActivity : AppCompatActivity() {
     }
 
     private lateinit var adapter: TransaksiDetailAdapter
-    private lateinit var tvInfoHeader: TextView
-    private lateinit var tvTotal: TextView
-    private lateinit var rvDetail: RecyclerView
     private lateinit var vm: TransaksiDetailViewModel
+    private lateinit var binding: ActivityTransaksiDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_transaksi_detail)
+        binding = ActivityTransaksiDetailBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        tvInfoHeader = findViewById(R.id.tvInfoHeader)
-        tvTotal = findViewById(R.id.tvTotal)
-        rvDetail = findViewById(R.id.rvDetail)
+        binding.apply {
+            adapter = TransaksiDetailAdapter()
+            rvDetail.layoutManager = LinearLayoutManager(this@TransaksiDetailActivity)
+            rvDetail.adapter = adapter
 
-        adapter = TransaksiDetailAdapter()
-        rvDetail.layoutManager = LinearLayoutManager(this)
-        rvDetail.adapter = adapter
+            vm = ViewModelProvider(this@TransaksiDetailActivity, TransaksiDetailViewModelFactory(this@TransaksiDetailActivity))[TransaksiDetailViewModel::class.java]
 
-        vm = ViewModelProvider(this, TransaksiDetailViewModelFactory(this))[TransaksiDetailViewModel::class.java]
+            val headerId = intent.getIntExtra(EXTRA_HEADER_ID, -1)
+            val total = intent.getLongExtra(EXTRA_TOTAL, 0L)
+            val metode = intent.getStringExtra(EXTRA_METODE) ?: "CASH"
+            val tanggal = intent.getLongExtra(EXTRA_TANGGAL, 0L)
 
-        val headerId = intent.getIntExtra(EXTRA_HEADER_ID, -1)
-        val total = intent.getLongExtra(EXTRA_TOTAL, 0L)
-        val metode = intent.getStringExtra(EXTRA_METODE) ?: "CASH"
-        val tanggal = intent.getLongExtra(EXTRA_TANGGAL, 0L)
+            val fmt = SimpleDateFormat("dd MMM yyyy HH:mm", Locale("in","ID"))
+            tvInfoHeader.text = "Metode: $metode • Tanggal: ${fmt.format(java.util.Date(tanggal))}"
+            tvTotal.text = "Total: Rp %,d".format(Locale("in","ID"), total)
 
-        val fmt = SimpleDateFormat("dd MMM yyyy HH:mm", Locale("in","ID"))
-        tvInfoHeader.text = "Metode: $metode • Tanggal: ${fmt.format(java.util.Date(tanggal))}"
-        tvTotal.text = "Total: Rp %,d".format(Locale("in","ID"), total)
+            vm.details.observe(this@TransaksiDetailActivity) { list ->
+                adapter.submit(list)
+            }
 
-        vm.details.observe(this) { list ->
-            adapter.submit(list)
-        }
-
-        if (headerId > 0) {
-            vm.load(headerId)
-        } else {
-            android.widget.Toast.makeText(this, "Header ID tidak valid", android.widget.Toast.LENGTH_SHORT).show()
-            finish()
+            if (headerId > 0) {
+                vm.load(headerId)
+            } else {
+                android.widget.Toast.makeText(this@TransaksiDetailActivity, "Header ID tidak valid", android.widget.Toast.LENGTH_SHORT).show()
+                finish()
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ import com.example.skripsi.R
 import com.example.skripsi.core.db.AppDatabase
 import com.example.skripsi.data.entity.BarangEntity
 import com.example.skripsi.data.repository.BarangRepository
+import com.example.skripsi.databinding.ActivityPilihBarangBinding
 import com.example.skripsi.feature.checkout.vm.PilihBarangViewModel
 import com.example.skripsi.feature.checkout.vm.PilihBarangViewModelFactory
 
@@ -27,47 +28,48 @@ class PilihBarangActivity : AppCompatActivity() {
         const val EXTRA_QTY = "extra_qty"
     }
 
-    private lateinit var grid: GridView
-    private lateinit var etSearch: EditText
+
     private lateinit var adapter: PilihBarangGridAdapter
     private lateinit var vm: PilihBarangViewModel
+    private lateinit var binding: ActivityPilihBarangBinding
     private var allData: List<BarangEntity> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pilih_barang)
-
-        grid = findViewById(R.id.gridBarang)
-        etSearch = findViewById(R.id.etSearch)
+        binding = ActivityPilihBarangBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         val db = AppDatabase.getDatabase(this)
         val repo = BarangRepository(db.barangDao())
         val factory = PilihBarangViewModelFactory(repo)
         vm = ViewModelProvider(this, factory)[PilihBarangViewModel::class.java]
 
-        adapter = PilihBarangGridAdapter(this, emptyList())
-        grid.adapter = adapter
+        binding.apply {
+            adapter = PilihBarangGridAdapter(this@PilihBarangActivity, emptyList())
+            gridBarang.adapter = adapter
 
-        vm.allBarang.observe(this) { list ->
-            allData = list
-            adapter.submit(list)
-        }
-
-        grid.setOnItemClickListener { _, _, position, _ ->
-            val barang = adapter.getItem(position) as BarangEntity
-            showQtyDialog(barang)
-        }
-
-        etSearch.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) = Unit
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val q = s?.toString()?.trim()?.lowercase().orEmpty()
-                val filtered = if (q.isEmpty()) allData
-                else allData.filter { it.nama.lowercase().contains(q) }
-                adapter.submit(filtered)
+            vm.allBarang.observe(this@PilihBarangActivity) { list ->
+                allData = list
+                adapter.submit(list)
             }
-        })
+
+            gridBarang.setOnItemClickListener { _, _, position, _ ->
+                val barang = adapter.getItem(position) as BarangEntity
+                showQtyDialog(barang)
+            }
+
+            etSearch.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) = Unit
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    val q = s?.toString()?.trim()?.lowercase().orEmpty()
+                    val filtered = if (q.isEmpty()) allData
+                    else allData.filter { it.nama.lowercase().contains(q) }
+                    adapter.submit(filtered)
+                }
+            })
+        }
     }
 
     private fun showQtyDialog(barang: BarangEntity) {

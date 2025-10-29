@@ -13,18 +13,19 @@ import com.example.skripsi.R
 import com.example.skripsi.feature.transaksi.vm.TransaksiListViewModel
 import com.example.skripsi.feature.transaksi.vm.TransaksiListViewModelFactory
 import androidx.recyclerview.widget.RecyclerView
+import com.example.skripsi.databinding.ActivityTransaksiListBinding
 
 class TransaksiListActivity : AppCompatActivity() {
+
     private lateinit var vm: TransaksiListViewModel
     private lateinit var adapter: TransaksiHeaderAdapter
+    private lateinit var binding: ActivityTransaksiListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_transaksi_list)
-
-        val et = findViewById<EditText>(R.id.etSearch)
-        val btnToday = findViewById<Button>(R.id.btnFilterToday)
-        val rv = findViewById<RecyclerView>(R.id.rvTransaksi)
+        binding = ActivityTransaksiListBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         vm = ViewModelProvider(this, TransaksiListViewModelFactory(this))[TransaksiListViewModel::class.java]
         adapter = TransaksiHeaderAdapter { h ->
@@ -35,17 +36,20 @@ class TransaksiListActivity : AppCompatActivity() {
                 putExtra(TransaksiDetailActivity.EXTRA_TANGGAL, h.tanggal)
             })
         }
-        rv.layoutManager = LinearLayoutManager(this); rv.adapter = adapter
 
-        vm.filtered.observe(this) { adapter.submit(it) }
+        binding.apply {
+            rvTransaksi.layoutManager = LinearLayoutManager(this@TransaksiListActivity); rvTransaksi.adapter = adapter
 
-        et.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
-            override fun afterTextChanged(s: Editable?) = Unit
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { vm.setQuery(s?.toString().orEmpty()) }
-        })
+            vm.filtered.observe(this@TransaksiListActivity) { adapter.submit(it) }
 
-        var today = false
-        btnToday.setOnClickListener { today = !today; vm.setTodayOnly(today); btnToday.text = if (today) "Semua" else "Hari ini" }
+            etSearch.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+                override fun afterTextChanged(s: Editable?) = Unit
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { vm.setQuery(s?.toString().orEmpty()) }
+            })
+
+            var today = false
+            btnFilterToday.setOnClickListener { today = !today; vm.setTodayOnly(today); btnFilterToday.text = if (today) "Semua" else "Hari ini" }
+        }
     }
 }

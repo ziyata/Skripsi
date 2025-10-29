@@ -7,7 +7,9 @@
     android:elevation="3dp"
     android:gravity="center"
     android:background="@drawable/bg_card"
-    android:layout_margin="4dp">
+    android:layout_margin="4dp"
+    android:paddingTop="@dimen/status_bar_padding"
+    android:clipToPadding="false">
 
     <TextView
         android:id="@+id/tvNamaBarang"

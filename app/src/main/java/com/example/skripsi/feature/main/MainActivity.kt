@@ -25,40 +25,40 @@ class MainActivity : AppCompatActivity() {
 
         val session = SessionManager(this)
 
-        // Tampilkan sesuai role
-        binding.tvAdminSection.isVisible = session.isAdmin
-        binding.btnBarang.isVisible = session.isAdmin
-        binding.btnStockAdjustment.isVisible = session.isAdmin
-        binding.btnPrediksi.isVisible = session.isAdmin
-        binding.btnRiwayatTransaksi.isVisible = session.isAdmin
+        binding.apply {
+            tvAdminSection.isVisible = session.isAdmin
+            btnBarang.isVisible = session.isAdmin
+            btnStockAdjustment.isVisible = session.isAdmin
+            btnPrediksi.isVisible = session.isAdmin
+            btnRiwayatTransaksi.isVisible = session.isAdmin
 
-        binding.tvUserSection.isVisible = !session.isAdmin
-        binding.btnScanQr.isVisible = !session.isAdmin
-        binding.btnCheckout.isVisible = !session.isAdmin
+            tvUserSection.isVisible = !session.isAdmin
+            btnScanQr.isVisible = !session.isAdmin
+            btnCheckout.isVisible = !session.isAdmin
 
-        // Aksi tombol
-        binding.btnLogout.setOnClickListener {
-            session.clear()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
-        binding.btnBarang.setOnClickListener {
-            startActivity(Intent(this, BarangActivity::class.java))
-        }
-        binding.btnStockAdjustment.setOnClickListener {
-            startActivity(Intent(this, StockAdjustmentActivity::class.java))
-        }
-        binding.btnPrediksi.setOnClickListener {
-            startActivity(Intent(this, PrediksiActivity::class.java))
-        }
-        binding.btnRiwayatTransaksi.setOnClickListener {
-            startActivity(Intent(this, TransaksiListActivity::class.java))
-        }
-        binding.btnScanQr.setOnClickListener {
-            startActivity(Intent(this, QrActivity::class.java))
-        }
-        binding.btnCheckout.setOnClickListener {
-            startActivity(Intent(this, CheckoutActivity::class.java))
+            btnLogout.setOnClickListener {
+                session.clear()
+                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                finish()
+            }
+            btnBarang.setOnClickListener {
+                startActivity(Intent(this@MainActivity, BarangActivity::class.java))
+            }
+            btnStockAdjustment.setOnClickListener {
+                startActivity(Intent(this@MainActivity, StockAdjustmentActivity::class.java))
+            }
+            btnPrediksi.setOnClickListener {
+                startActivity(Intent(this@MainActivity, PrediksiActivity::class.java))
+            }
+            btnRiwayatTransaksi.setOnClickListener {
+                startActivity(Intent(this@MainActivity, TransaksiListActivity::class.java))
+            }
+            btnScanQr.setOnClickListener {
+                startActivity(Intent(this@MainActivity, QrActivity::class.java))
+            }
+            btnCheckout.setOnClickListener {
+                startActivity(Intent(this@MainActivity, CheckoutActivity::class.java))
+            }
         }
     }
 }

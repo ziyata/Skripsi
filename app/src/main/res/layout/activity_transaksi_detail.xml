@@ -4,7 +4,9 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/status_bar_padding"
+    android:clipToPadding="false">
 
     <TextView
         android:id="@+id/tvInfoHeader"
@@ -28,5 +30,6 @@
         android:text="Total: Rp 0"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:paddingTop="8dp" />
+        android:paddingTop="8dp"
+        android:layout_marginBottom="8dp"/>
 </LinearLayout>
