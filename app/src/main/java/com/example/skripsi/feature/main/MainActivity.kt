@@ -13,6 +13,7 @@ import com.example.skripsi.databinding.ActivityMainBinding
 import com.example.skripsi.feature.auth.LoginActivity
 import com.example.skripsi.feature.barang.ui.BarangActivity
 import com.example.skripsi.feature.checkout.ui.CheckoutActivity
+import com.example.skripsi.feature.order.ui.AdminOrderActivity
 import com.example.skripsi.feature.prediksi.ui.PrediksiActivity
 import com.example.skripsi.feature.qr.ui.QrActivity
 import com.example.skripsi.feature.stok.ui.StockAdjustmentActivity
@@ -117,6 +118,10 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
             }
+            binding.btnPesananMasuk.setOnClickListener {
+                startActivity(Intent(this@MainActivity, AdminOrderActivity::class.java))
+            }
+
         }
     }
 }

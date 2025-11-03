@@ -16,28 +16,51 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skripsi">
-
+        <activity
+            android:name=".feature.order.ui.AdminOrderActivity"
+            android:exported="false" />
         <activity
             android:name=".feature.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".feature.main.MainActivity" android:exported="false" />
-        <activity android:name=".feature.order.ui.OrderActivity" android:exported="false" />
-        <activity android:name=".feature.checkout.ui.CheckoutActivity" android:exported="false" />
-        <activity android:name=".feature.checkout.ui.PilihBarangActivity" android:exported="false" />
-        <activity android:name=".feature.transaksi.ui.TransaksiListActivity" android:exported="false" />
-        <activity android:name=".feature.transaksi.ui.TransaksiDetailActivity" android:exported="false" />
-        <activity android:name=".feature.prediksi.ui.PrediksiActivity" android:exported="false" />
-        <activity android:name=".feature.stok.ui.StockHistoryActivity" android:exported="false" />
-        <activity android:name=".feature.stok.ui.StockAdjustmentActivity" android:exported="false" />
-        <activity android:name=".feature.qr.ui.QrActivity" android:exported="false" />
-        <activity android:name=".feature.barang.ui.BarangActivity" android:exported="false" />
+        <activity
+            android:name=".feature.main.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.order.ui.OrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.checkout.ui.CheckoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.checkout.ui.PilihBarangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.transaksi.ui.TransaksiListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.transaksi.ui.TransaksiDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.prediksi.ui.PrediksiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.stok.ui.StockHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.stok.ui.StockAdjustmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.qr.ui.QrActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.barang.ui.BarangActivity"
+            android:exported="false" />
     </application>
-
 
 </manifest>

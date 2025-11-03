@@ -2,6 +2,7 @@ package com.example.skripsi.feature.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -18,12 +19,14 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        Log.d("Login","onCreate")
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+//        Log.d("Login","after setContentView")
 
         val session = SessionManager(this)
-        if (session.isLoggedIn) {
+        if (!session.isLoggedIn) {
             goMain()
             return
         }

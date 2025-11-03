@@ -31,11 +31,10 @@ import com.example.skripsi.data.entity.UserEntity
         PaymentEntity::class,
         UserEntity::class
     ],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun barangDao(): BarangDao
     abstract fun transaksiHeaderDao(): TransaksiHeaderDao
     abstract fun transaksiDetailDao(): TransaksiDetailDao
@@ -55,7 +54,6 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "pos_db"
                 )
-                    // Cepat untuk dev; produksi sebaiknya tulis Migration manual
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
@@ -64,3 +62,4 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+

@@ -1,0 +1,51 @@
+package com.example.skripsi.feature.order.vm
+
+import android.content.Context
+import androidx.lifecycle.*
+import com.example.skripsi.core.db.AppDatabase
+import com.example.skripsi.data.entity.OrderHeaderEntity
+import com.example.skripsi.data.repository.OrderRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+class AdminOrderViewModel(private val repo: OrderRepository) : ViewModel() {
+
+    private val _orders = MutableLiveData<List<OrderHeaderEntity>>()
+    val orders: LiveData<List<OrderHeaderEntity>> = _orders
+
+    fun loadUnpaid() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val list = repo.getUnpaidOrders()
+            _orders.postValue(list)
+        }
+    }
+
+    fun confirm(orderId: Int, onSuccess: () -> Unit, onError: (Throwable) -> Unit) {
+        viewModelScope.launch {
+            repo.confirmOrder(orderId,
+                onSuccess = { onSuccess() },
+                onError = { onError(it) }
+            )
+        }
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+class AdminOrderViewModelFactory(ctx: Context) : ViewModelProvider.Factory {
+    private val db = AppDatabase.getDatabase(ctx.applicationContext)
+    private val repo = OrderRepository(
+        db.orderDao(),
+        db.barangDao(),
+        db.transaksiHeaderDao(),
+        db.transaksiDetailDao(),
+        db.stockMutationDao(),
+        db.paymentDao()
+    )
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(AdminOrderViewModel::class.java)) {
+            return AdminOrderViewModel(repo) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}

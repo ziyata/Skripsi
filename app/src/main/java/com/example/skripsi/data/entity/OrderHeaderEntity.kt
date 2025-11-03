@@ -10,5 +10,6 @@ data class OrderHeaderEntity(
     val tableId: String? = null,
     val customerName: String? = null,
     val status: String,
-    val notes: String? = null
+    val notes: String? = null,
+    val total: Long = 0L
 )

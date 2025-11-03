@@ -21,7 +21,7 @@ class OrderActivity : AppCompatActivity() {
     private lateinit var vm: OrderViewModel
     private lateinit var adapter: OrderAdapter
 
-    private var tableId: Int? = null
+    private var tableId: String? = null
 
     private val qrLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { res ->
         if (res.resultCode == RESULT_OK && res.data != null) {
@@ -31,15 +31,15 @@ class OrderActivity : AppCompatActivity() {
                     if (id > 0) vm.addItem(id, 1)
                 }
                 "table" -> {
-                    tableId = res.data!!.getIntExtra("table_id", -1).takeIf { it > 0 }
+                    val tid = res.data!!.getIntExtra("table_id", -1)
+                    tableId = if (tid > 0) tid.toString() else null
                     vm.initDraft(tableId)
                 }
-                "cart" -> {
-                    // decode payload jika diperlukan untuk mass add
-                }
+                "cart" -> { /* TODO */ }
             }
         }
     }
+
 
     @OptIn(ExperimentalGetImage::class)
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -12,7 +12,7 @@ class OrderViewModel(private val repo: OrderRepository) : ViewModel() {
 
     var orderId: Int? = null
         private set
-    var tableId: Int? = null
+    var tableId: String? = null
         private set
 
     private val _items = MutableLiveData<List<OrderDetailEntity>>(emptyList())
@@ -20,7 +20,7 @@ class OrderViewModel(private val repo: OrderRepository) : ViewModel() {
 
     val total: Long get() = _items.value.orEmpty().sumOf { it.subtotal }
 
-    fun initDraft(tableId: Int?) {
+    fun initDraft(tableId: String?) {
         this.tableId = tableId
         viewModelScope.launch {
             orderId = repo.getOrCreateDraft(tableId)
@@ -60,7 +60,15 @@ class OrderViewModel(private val repo: OrderRepository) : ViewModel() {
 @Suppress("UNCHECKED_CAST")
 class OrderViewModelFactory(ctx: Context) : ViewModelProvider.Factory {
     private val db = AppDatabase.getDatabase(ctx.applicationContext)
-    private val repo = OrderRepository(db.orderDao(), db.barangDao())
+    private val repo = OrderRepository(
+        db.orderDao(),
+        db.barangDao(),
+        db.transaksiHeaderDao(),
+        db.transaksiDetailDao(),
+        db.stockMutationDao(),
+        db.paymentDao()
+    )
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(OrderViewModel::class.java)) {
             return OrderViewModel(repo) as T
