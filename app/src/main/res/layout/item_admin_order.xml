@@ -1,21 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:padding="12dp"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground">
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
-    <TextView
-        android:id="@+id/tvOrderId"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:text="Order #123" android:textStyle="bold"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvTotal"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:text="Total: Rp 100.000"/>
+        <TextView
+            android:id="@+id/tvOrderId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Order #123"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
 
-    <Button
-        android:id="@+id/btnKonfirmasi"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Konfirmasi dan Bayar" android:layout_marginTop="4dp"/>
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvTableId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Meja: 5"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total: Rp 100.000"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"/>
+
+        <Button
+            android:id="@+id/btnKonfirmasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Konfirmasi &amp; Bayar"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

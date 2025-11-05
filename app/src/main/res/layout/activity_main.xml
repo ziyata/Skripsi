@@ -30,13 +30,13 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnBarang"
+            android:id="@+id/btnKelolaBarang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kelola Barang" />
 
         <Button
-            android:id="@+id/btnStockAdjustment"
+            android:id="@+id/btnPenyesuaianStok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Penyesuaian Stok (IN/Adjust)" />
@@ -87,7 +87,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Pesanan Masuk" />
-
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

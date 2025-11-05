@@ -8,9 +8,13 @@ import com.example.skripsi.data.entity.UserEntity
 
 @Dao
 interface UserDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: UserEntity): Long
 
     @Query("SELECT * FROM user WHERE username = :username LIMIT 1")
     suspend fun findByUsername(username: String): UserEntity?
+
+    @Query("SELECT * FROM user WHERE username = :username AND passwordHash = :password LIMIT 1")
+    suspend fun login(username: String, password: String): UserEntity?
 }

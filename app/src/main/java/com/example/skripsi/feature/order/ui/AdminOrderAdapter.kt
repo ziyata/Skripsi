@@ -14,13 +14,16 @@ class AdminOrderAdapter(
     private val data = mutableListOf<OrderHeaderEntity>()
 
     fun submit(list: List<OrderHeaderEntity>) {
-        data.clear(); data.addAll(list); notifyDataSetChanged()
+        data.clear()
+        data.addAll(list)
+        notifyDataSetChanged()
     }
 
     inner class VH(private val b: ItemAdminOrderBinding) : RecyclerView.ViewHolder(b.root) {
         fun bind(order: OrderHeaderEntity) {
             b.tvOrderId.text = "Order #${order.id}"
-            b.tvTotal.text = "Total: Belum dihitung"
+            b.tvTableId.text = if (order.tableId != null) "Meja: ${order.tableId}" else "Takeaway"
+            b.tvTotal.text = "Total: ${CurrencyFormatter.rupiah(order.total)}"
             b.btnKonfirmasi.setOnClickListener { onConfirm(order) }
         }
     }
@@ -29,5 +32,6 @@ class AdminOrderAdapter(
         VH(ItemAdminOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(data[position])
+
     override fun getItemCount() = data.size
 }

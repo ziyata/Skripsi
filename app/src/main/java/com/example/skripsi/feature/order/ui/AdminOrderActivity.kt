@@ -21,20 +21,26 @@ class AdminOrderActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         vm = ViewModelProvider(this, AdminOrderViewModelFactory(this))[AdminOrderViewModel::class.java]
+
         adapter = AdminOrderAdapter { order ->
             vm.confirm(order.id,
                 onSuccess = {
-                    Toast.makeText(this, "Order #${order.id} dikonfirmasi", Toast.LENGTH_SHORT).show()
-                    vm.loadUnpaid()
+                    Toast.makeText(this, "Order #${order.id} berhasil dikonfirmasi", Toast.LENGTH_SHORT).show()
+                    vm.loadUnpaid()  // refresh list
                 },
-                onError = { e -> Toast.makeText(this, "Gagal: ${e.message}", Toast.LENGTH_SHORT).show() }
+                onError = { e ->
+                    Toast.makeText(this, "Gagal: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
             )
         }
 
         binding.rvOrders.layoutManager = LinearLayoutManager(this)
         binding.rvOrders.adapter = adapter
 
-        vm.orders.observe(this) { adapter.submit(it) }
+        vm.orders.observe(this) { list ->
+            adapter.submit(list)
+        }
+
         vm.loadUnpaid()
     }
 }

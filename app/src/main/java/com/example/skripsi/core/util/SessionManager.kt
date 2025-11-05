@@ -1,19 +1,45 @@
-package com.example.skripsi.core.util
+package com.example.skripsi.core.session
 
 import android.content.Context
 import android.content.SharedPreferences
 
-class SessionManager(ctx: Context) {
-    private val pref: SharedPreferences = ctx.getSharedPreferences("session", Context.MODE_PRIVATE)
+class SessionManager(context: Context) {
+    private val prefs: SharedPreferences =
+        context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
 
-    fun saveUser(username: String, role: String) {
-        pref.edit().putString("username", username).putString("role", role).apply()
+    val isLoggedIn: Boolean
+        get() = prefs.getBoolean("is_logged_in", false)
+
+    val userId: Int
+        get() = prefs.getInt("user_id", -1)
+
+    val userName: String?
+        get() = prefs.getString("user_name", null)
+
+    val userRole: String?
+        get() = prefs.getString("user_role", null)
+
+    fun login(userId: Int, userName: String, role: String) {
+        prefs.edit().apply {
+            putBoolean("is_logged_in", true)
+            putInt("user_id", userId)
+            putString("user_name", userName)
+            putString("user_role", role)
+            apply()
+        }
     }
 
-    fun clear() { pref.edit().clear().apply() }
+    // Tambahkan fungsi saveUser
+    fun saveUser(userName: String, role: String) {
+        prefs.edit().apply {
+            putBoolean("is_logged_in", true)
+            putString("user_name", userName)
+            putString("user_role", role)
+            apply()
+        }
+    }
 
-    val username: String? get() = pref.getString("username", null)
-    val role: String? get() = pref.getString("role", null)
-    val isLoggedIn: Boolean get() = username != null && role != null
-    val isAdmin: Boolean get() = role == "ADMIN"
+    fun logout() {
+        prefs.edit().clear().apply()
+    }
 }
