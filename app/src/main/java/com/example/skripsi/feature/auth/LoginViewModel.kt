@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.skripsi.core.db.AppDatabase
-import com.example.skripsi.core.session.SessionManager
+import com.example.skripsi.core.util.SessionManager
 import com.example.skripsi.data.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

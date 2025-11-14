@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.skripsi.core.session.SessionManager
+import com.example.skripsi.core.util.SessionManager
 import com.example.skripsi.databinding.ActivityLoginBinding
 import com.example.skripsi.feature.auth.vm.LoginViewModel
 import com.example.skripsi.feature.auth.vm.LoginViewModelFactory
-import com.example.skripsi.feature.main.ui.MainActivity
+import com.example.skripsi.feature.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 

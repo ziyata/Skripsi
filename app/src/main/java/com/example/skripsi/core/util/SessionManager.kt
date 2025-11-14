@@ -1,4 +1,4 @@
-package com.example.skripsi.core.session
+package com.example.skripsi.core.util
 
 import android.content.Context
 import android.content.SharedPreferences

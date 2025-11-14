@@ -7,9 +7,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.ExperimentalGetImage
-import com.example.skripsi.core.session.SessionManager
+import com.example.skripsi.core.util.SessionManager
 import com.example.skripsi.databinding.ActivityMainBinding
 import com.example.skripsi.feature.auth.LoginActivity
+import com.example.skripsi.feature.barang.ui.BarangActivity
 import com.example.skripsi.feature.order.ui.OrderActivity
 import com.example.skripsi.feature.order.ui.AdminOrderActivity
 import com.example.skripsi.feature.qr.ui.QrActivity
@@ -53,17 +54,15 @@ class MainActivity : AppCompatActivity() {
         // Setup UI berdasarkan role
         setupMenuByRole()
 
-        // Button handlers (Admin)
-//        binding.btnKelolaBarang.setOnClickListener {
-//            startActivity(Intent(this, BarangListActivity::class.java))
-//        }
+//         Button handlers (Admin)
+        binding.btnKelolaBarang.setOnClickListener {
+            startActivity(Intent(this, BarangActivity::class.java))
+        }
 
         binding.btnPenyesuaianStok.setOnClickListener {
-            // TODO: StockAdjustmentActivity
         }
 
         binding.btnPrediksi.setOnClickListener {
-            // TODO: StockPredictionActivity
         }
 
         binding.btnRiwayatTransaksi.setOnClickListener {
@@ -97,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         val role = session.userRole
 
         when (role) {
-            "admin" -> {
+            "ADMIN" -> {
                 // Show menu admin, hide menu user
                 binding.tvAdminSection.visibility = View.VISIBLE
                 binding.btnKelolaBarang.visibility = View.VISIBLE
@@ -110,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                 binding.btnScanQr.visibility = View.GONE
                 binding.btnCheckout.visibility = View.GONE
             }
-            "user" -> {
+            "USER" -> {
                 // Show menu user, hide menu admin
                 binding.tvUserSection.visibility = View.GONE
                 binding.btnKelolaBarang.visibility = View.GONE
@@ -125,16 +124,16 @@ class MainActivity : AppCompatActivity() {
             }
             else -> {
                 // Default: hide all (safety)
-                binding.tvAdminSection.visibility = View.GONE
-                binding.btnKelolaBarang.visibility = View.GONE
-                binding.btnPenyesuaianStok.visibility = View.GONE
-                binding.btnPrediksi.visibility = View.GONE
-                binding.btnRiwayatTransaksi.visibility = View.GONE
-                binding.btnPesananMasuk.visibility = View.GONE
+                binding.tvAdminSection.visibility = View.VISIBLE
+                binding.btnKelolaBarang.visibility = View.VISIBLE
+                binding.btnPenyesuaianStok.visibility = View.VISIBLE
+                binding.btnPrediksi.visibility = View.VISIBLE
+                binding.btnRiwayatTransaksi.visibility = View.VISIBLE
+                binding.btnPesananMasuk.visibility = View.VISIBLE
 
-                binding.tvUserSection.visibility = View.GONE
-                binding.btnScanQr.visibility = View.GONE
-                binding.btnCheckout.visibility = View.GONE
+                binding.tvUserSection.visibility = View.VISIBLE
+                binding.btnScanQr.visibility = View.VISIBLE
+                binding.btnCheckout.visibility = View.VISIBLE
             }
         }
     }
