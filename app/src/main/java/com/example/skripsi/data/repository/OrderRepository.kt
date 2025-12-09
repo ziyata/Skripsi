@@ -1,6 +1,8 @@
 package com.example.skripsi.data.repository
 
+import android.content.Context
 import android.util.Log
+import com.example.skripsi.core.util.StockNotification
 import com.example.skripsi.data.dao.*
 import com.example.skripsi.data.entity.*
 import com.example.skripsi.feature.order.ui.AdminOrderItem
@@ -117,6 +119,7 @@ class OrderRepository(
 
 
     suspend fun confirmOrder(
+        context: Context,
         orderId: Int,
         onSuccess: (Long) -> Unit,
         onError: (Throwable) -> Unit
@@ -162,13 +165,18 @@ class OrderRepository(
 
                 // Update stok dan mutation
                 details.forEach { d ->
-                    // Kurangi stok
                     val barang = barangDao.getBarangById(d.barangId)
                     if (barang != null) {
-                        barangDao.updateBarang(barang.copy(stok = barang.stok - d.qty))
-                    }
+                        val newStok = barang.stok - d.qty
+                        barangDao.updateBarang(barang.copy(stok = newStok))
 
-                    // Insert StockMutation
+                        if (newStok <= 5) {
+                            // panggil helper
+                            withContext(Dispatchers.Main) {
+                                StockNotification.showLowStock(context, barang.nama, newStok)
+                            }
+                        }
+                    }
                     stockMutationDao.insert(
                         StockMutationEntity(
                             id = 0,

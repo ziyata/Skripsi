@@ -9,7 +9,7 @@ import com.example.skripsi.feature.order.ui.AdminOrderItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AdminOrderViewModel(private val repo: OrderRepository) : ViewModel() {
+class AdminOrderViewModel(private val repo: OrderRepository, private val appContext: Context) : ViewModel() {
 
     private val _orders = MutableLiveData<List<AdminOrderItem>>()
     val orders: LiveData<List<AdminOrderItem>> = _orders
@@ -24,7 +24,8 @@ class AdminOrderViewModel(private val repo: OrderRepository) : ViewModel() {
     fun confirm(orderId: Int, onSuccess: () -> Unit, onError: (Throwable) -> Unit) {
         viewModelScope.launch {
             repo.confirmOrder(
-                orderId,
+                context = appContext,
+                orderId = orderId,
                 onSuccess = { onSuccess() },
                 onError = { onError(it) }
             )
@@ -34,7 +35,8 @@ class AdminOrderViewModel(private val repo: OrderRepository) : ViewModel() {
 
 @Suppress("UNCHECKED_CAST")
 class AdminOrderViewModelFactory(ctx: Context) : ViewModelProvider.Factory {
-    private val db = AppDatabase.getDatabase(ctx.applicationContext)
+    private val appCtx = ctx.applicationContext
+    private val db = AppDatabase.getDatabase(appCtx)
     private val repo = OrderRepository(
         db.orderDao(),
         db.barangDao(),
@@ -46,7 +48,7 @@ class AdminOrderViewModelFactory(ctx: Context) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AdminOrderViewModel::class.java)) {
-            return AdminOrderViewModel(repo) as T
+            return AdminOrderViewModel(repo, appCtx) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
