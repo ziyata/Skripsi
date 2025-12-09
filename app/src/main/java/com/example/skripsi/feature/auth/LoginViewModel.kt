@@ -1,4 +1,4 @@
-package com.example.skripsi.feature.auth.vm
+package com.example.skripsi.feature.auth
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

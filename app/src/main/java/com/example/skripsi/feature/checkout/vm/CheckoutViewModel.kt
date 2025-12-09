@@ -74,7 +74,7 @@ class CheckoutViewModel(
 
                 paymentRepo.insert(
                     PaymentEntity(
-                        orderId = null,
+                        orderId = 0,
                         transaksiId = headerId,
                         method = "CASH",
                         amount = bayar,

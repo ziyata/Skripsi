@@ -14,6 +14,10 @@ interface BarangDao {
     @Query("SELECT * FROM barang ORDER BY id DESC")
     fun getAllBarang(): LiveData<List<BarangEntity>>
 
+    // Tambahan: ambil list sekali, dipakai di OrderActivity
+    @Query("SELECT * FROM barang ORDER BY id DESC")
+    suspend fun getAllBarangOnce(): List<BarangEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBarang(barang: BarangEntity)
 
@@ -28,4 +32,8 @@ interface BarangDao {
 
     @Query("SELECT * FROM barang WHERE id = :id LIMIT 1")
     suspend fun getBarangById(id: Int): BarangEntity?
+
+    @Query("SELECT * FROM barang WHERE stok <= :minStok ORDER BY stok ASC")
+    suspend fun getLowStock(minStok: Int = 5): List<BarangEntity>
+
 }

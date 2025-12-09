@@ -22,11 +22,12 @@ class AdminOrderActivity : AppCompatActivity() {
 
         vm = ViewModelProvider(this, AdminOrderViewModelFactory(this))[AdminOrderViewModel::class.java]
 
-        adapter = AdminOrderAdapter { order ->
-            vm.confirm(order.id,
+        adapter = AdminOrderAdapter { item ->
+            vm.confirm(
+                item.orderId,
                 onSuccess = {
-                    Toast.makeText(this, "Order #${order.id} berhasil dikonfirmasi", Toast.LENGTH_SHORT).show()
-                    vm.loadUnpaid()  // refresh list
+                    Toast.makeText(this, "Order #${item.orderId} berhasil dikonfirmasi", Toast.LENGTH_SHORT).show()
+                    vm.loadUnpaid()
                 },
                 onError = { e ->
                     Toast.makeText(this, "Gagal: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -44,3 +45,4 @@ class AdminOrderActivity : AppCompatActivity() {
         vm.loadUnpaid()
     }
 }
+

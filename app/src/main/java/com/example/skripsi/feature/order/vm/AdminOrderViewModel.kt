@@ -5,24 +5,26 @@ import androidx.lifecycle.*
 import com.example.skripsi.core.db.AppDatabase
 import com.example.skripsi.data.entity.OrderHeaderEntity
 import com.example.skripsi.data.repository.OrderRepository
+import com.example.skripsi.feature.order.ui.AdminOrderItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AdminOrderViewModel(private val repo: OrderRepository) : ViewModel() {
 
-    private val _orders = MutableLiveData<List<OrderHeaderEntity>>()
-    val orders: LiveData<List<OrderHeaderEntity>> = _orders
+    private val _orders = MutableLiveData<List<AdminOrderItem>>()
+    val orders: LiveData<List<AdminOrderItem>> = _orders
 
     fun loadUnpaid() {
         viewModelScope.launch(Dispatchers.IO) {
-            val list = repo.getUnpaidOrders()
+            val list = repo.getUnpaidOrdersWithPayment()
             _orders.postValue(list)
         }
     }
 
     fun confirm(orderId: Int, onSuccess: () -> Unit, onError: (Throwable) -> Unit) {
         viewModelScope.launch {
-            repo.confirmOrder(orderId,
+            repo.confirmOrder(
+                orderId,
                 onSuccess = { onSuccess() },
                 onError = { onError(it) }
             )

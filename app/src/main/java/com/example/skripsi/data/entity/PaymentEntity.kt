@@ -9,13 +9,17 @@ import androidx.room.PrimaryKey
     indices = [Index("orderId"), Index("transaksiId")]
 )
 data class PaymentEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val orderId: Int? = null,
-    val transaksiId: Int? = null,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+
+    val orderId: Int,
+    val transaksiId: Int?,
+
     val method: String,
+
     val amount: Long,
-    val changeAmount: Long = 0L,
-    val refNumber: String? = null,
+    val changeAmount: Long,
+    val refNumber: String?,
     val status: String,
     val paidAt: Long
 )

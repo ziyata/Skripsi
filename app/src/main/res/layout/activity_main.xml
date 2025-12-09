@@ -53,6 +53,12 @@
             android:layout_height="wrap_content"
             android:text="Riwayat Transaksi" />
 
+        <Button
+            android:id="@+id/btnGenerateQr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generate Qr" />
+
         <!-- User section -->
         <TextView
             android:id="@+id/tvUserSection"
@@ -68,11 +74,11 @@
             android:layout_height="wrap_content"
             android:text="Scan QR" />
 
-        <Button
-            android:id="@+id/btnCheckout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Checkout (Kasir)" />
+<!--        <Button-->
+<!--            android:id="@+id/btnCheckout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Checkout (Kasir)" />-->
 
         <Button
             android:id="@+id/btnLogout"

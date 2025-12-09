@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skripsi">
         <activity
+            android:name=".feature.stok.ui.LowStockActivity"
+            android:exported="false" />
+        <activity
             android:name=".feature.order.ui.AdminOrderActivity"
             android:exported="false" />
         <activity
@@ -56,7 +59,7 @@
             android:name=".feature.stok.ui.StockAdjustmentActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.qr.ui.QrActivity"
+            android:name=".feature.qr.QrActivity"
             android:exported="false" />
         <activity
             android:name=".feature.barang.ui.BarangActivity"

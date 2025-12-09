@@ -36,17 +36,22 @@ class OrderViewModel(private val repo: OrderRepository) : ViewModel() {
         }
     }
 
-    fun markUnpaid(onDone: () -> Unit, onError: (Throwable) -> Unit) {
-        val id = orderId ?: return
+    fun markUnpaid(
+        method: String,
+        onDone: () -> Unit,
+        onError: (Throwable) -> Unit
+    ) {
         viewModelScope.launch {
             try {
-                repo.markUnpaid(id)
+                val id = orderId ?: throw IllegalStateException("Order belum siap")
+                repo.markUnpaid(id, method)
                 onDone()
             } catch (e: Throwable) {
                 onError(e)
             }
         }
     }
+
 
     private fun refresh() {
         val id = orderId ?: return

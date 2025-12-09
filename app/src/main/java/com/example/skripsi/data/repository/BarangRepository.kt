@@ -14,7 +14,10 @@ class BarangRepository(private val barangDao: BarangDao) {
 
     suspend fun delete(barang: BarangEntity) = barangDao.deleteBarang(barang)
 
-    suspend fun getByNama(nama: String): BarangEntity? = barangDao.getBarangByNama(nama)
+//    suspend fun getByNama(nama: String): BarangEntity? = barangDao.getBarangByNama(nama)
+//
+//    suspend fun getBarangById(id: Int): BarangEntity? = barangDao.getBarangById(id)
 
-    suspend fun getBarangById(id: Int): BarangEntity? = barangDao.getBarangById(id)
+    suspend fun getLowStock(minStok: Int = 5): List<BarangEntity> = barangDao.getLowStock(minStok)
+
 }

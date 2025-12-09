@@ -4,26 +4,27 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skripsi.core.util.CurrencyFormatter
-import com.example.skripsi.data.entity.OrderHeaderEntity
 import com.example.skripsi.databinding.ItemAdminOrderBinding
 
 class AdminOrderAdapter(
-    private val onConfirm: (OrderHeaderEntity) -> Unit
+    private val onConfirm: (AdminOrderItem) -> Unit
 ) : RecyclerView.Adapter<AdminOrderAdapter.VH>() {
 
-    private val data = mutableListOf<OrderHeaderEntity>()
+    private val data = mutableListOf<AdminOrderItem>()
 
-    fun submit(list: List<OrderHeaderEntity>) {
+    fun submit(list: List<AdminOrderItem>) {
         data.clear()
         data.addAll(list)
         notifyDataSetChanged()
     }
 
     inner class VH(private val b: ItemAdminOrderBinding) : RecyclerView.ViewHolder(b.root) {
-        fun bind(order: OrderHeaderEntity) {
-            b.tvOrderId.text = "Order #${order.id}"
+        fun bind(order: AdminOrderItem) {
+            b.tvOrderId.text = "Order #${order.orderId}"
             b.tvTableId.text = if (order.tableId != null) "Meja: ${order.tableId}" else "Takeaway"
             b.tvTotal.text = "Total: ${CurrencyFormatter.rupiah(order.total)}"
+            b.tvMethod.text = "Metode: ${order.paymentMethod}"      // pastikan ada TextView ini di layout
+            b.tvStatus.text = "Status: ${order.paymentStatus}"      // dan ini juga
             b.btnKonfirmasi.setOnClickListener { onConfirm(order) }
         }
     }

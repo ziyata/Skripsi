@@ -1,7 +1,9 @@
 package com.example.skripsi.data.repository
 
+import android.util.Log
 import com.example.skripsi.data.dao.*
 import com.example.skripsi.data.entity.*
+import com.example.skripsi.feature.order.ui.AdminOrderItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -30,6 +32,7 @@ class OrderRepository(
     }
 
     suspend fun addItem(orderId: Int, barangId: Int, qty: Int) = withContext(Dispatchers.IO) {
+        Log.d("OrderRepo", "addItem orderId=$orderId barangId=$barangId qty=$qty")
         val barang = barangDao.getBarangById(barangId)
             ?: throw IllegalArgumentException("Barang tidak ditemukan")
 
@@ -68,7 +71,7 @@ class OrderRepository(
         orderDao.listDetails(orderId)
     }
 
-    suspend fun markUnpaid(orderId: Int) = withContext(Dispatchers.IO) {
+    suspend fun markUnpaid(orderId: Int, method: String) = withContext(Dispatchers.IO) {
         updateOrderTotal(orderId)
         orderDao.updateStatus(orderId, "UNPAID")
 
@@ -76,10 +79,9 @@ class OrderRepository(
         if (header != null) {
             paymentDao.insert(
                 PaymentEntity(
-                    id = 0,
                     orderId = orderId,
                     transaksiId = null,
-                    method = "TRANSFER",
+                    method = method,
                     amount = header.total,
                     changeAmount = 0L,
                     refNumber = null,
@@ -87,12 +89,32 @@ class OrderRepository(
                     paidAt = System.currentTimeMillis()
                 )
             )
+
         }
     }
 
-    suspend fun getUnpaidOrders() = withContext(Dispatchers.IO) {
-        orderDao.listUnpaidOrders()
+
+    suspend fun getUnpaidOrdersWithPayment(): List<AdminOrderItem> = withContext(Dispatchers.IO) {
+        val headers = orderDao.listUnpaidOrders()  // list OrderHeaderEntity status UNPAID
+        val payments = paymentDao.getByOrders(headers.map { it.id })
+
+        // map orderId -> payment (ambil yang terbaru)
+        val paymentMap = payments.groupBy { it.orderId }.mapValues { (_, list) ->
+            list.maxByOrNull { it.paidAt }   // atau pakai id terbesar
+        }
+
+        headers.map { h ->
+            val p = paymentMap[h.id]
+            AdminOrderItem(
+                orderId = h.id,
+                tableId = h.tableId,
+                total = h.total,
+                paymentMethod = p?.method ?: "-",
+                paymentStatus = p?.status ?: "-"
+            )
+        }
     }
+
 
     suspend fun confirmOrder(
         orderId: Int,

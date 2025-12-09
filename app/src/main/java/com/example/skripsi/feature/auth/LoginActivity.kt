@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.skripsi.core.util.SessionManager
 import com.example.skripsi.databinding.ActivityLoginBinding
-import com.example.skripsi.feature.auth.vm.LoginViewModel
-import com.example.skripsi.feature.auth.vm.LoginViewModelFactory
 import com.example.skripsi.feature.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {

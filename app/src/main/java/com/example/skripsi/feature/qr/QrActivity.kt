@@ -1,8 +1,10 @@
-package com.example.skripsi.feature.qr.ui
+package com.example.skripsi.feature.qr
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -91,12 +93,16 @@ class QrActivity : AppCompatActivity() {
     }
 
     private fun handlePayload(raw: String) {
-        // Format: item:{id} | cart:{base64json} | table:{id}
+        Log.d("QR", "raw=$raw")
         when {
             raw.startsWith("item:") -> {
                 val id = raw.removePrefix("item:").toIntOrNull()
                 if (id != null) {
-                    setResult(RESULT_OK, intent.putExtra("qr_type", "item").putExtra("item_id", id))
+                    val result = Intent().apply {
+                        putExtra("qr_type", "item")
+                        putExtra("qr_value", id.toString())
+                    }
+                    setResult(RESULT_OK, result)
                     finish()
                 } else {
                     Toast.makeText(this, "QR item tidak valid", Toast.LENGTH_SHORT).show()
@@ -104,18 +110,21 @@ class QrActivity : AppCompatActivity() {
                 }
             }
             raw.startsWith("table:") -> {
-                val tableId = raw.removePrefix("table:").toIntOrNull()
-                if (tableId != null) {
-                    setResult(RESULT_OK, intent.putExtra("qr_type", "table").putExtra("table_id", tableId))
-                    finish()
-                } else {
-                    Toast.makeText(this, "QR meja tidak valid", Toast.LENGTH_SHORT).show()
-                    handledOnce = false
+                val tableId = raw.removePrefix("table:")
+                val result = Intent().apply {
+                    putExtra("qr_type", "table")
+                    putExtra("qr_value", tableId)
                 }
+                setResult(RESULT_OK, result)
+                finish()
             }
             raw.startsWith("cart:") -> {
                 val payload = raw.removePrefix("cart:")
-                setResult(RESULT_OK, intent.putExtra("qr_type", "cart").putExtra("cart_payload", payload))
+                val result = Intent().apply {
+                    putExtra("qr_type", "cart")
+                    putExtra("qr_value", payload)
+                }
+                setResult(RESULT_OK, result)
                 finish()
             }
             else -> {

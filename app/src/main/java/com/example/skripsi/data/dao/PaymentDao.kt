@@ -13,5 +13,8 @@ interface PaymentDao {
     suspend fun updateStatusByOrder(orderId: Int, status: String)
 
     @Query("SELECT * FROM payment WHERE orderId = :orderId LIMIT 1")
-    suspend fun getByOrder(orderId: Int): PaymentEntity?
+    suspend fun getByOrder(orderId: Int): PaymentEntity
+
+    @Query("SELECT * FROM payment WHERE orderId IN (:orderIds)")
+    suspend fun getByOrders(orderIds: List<Int>): List<PaymentEntity>
 }
