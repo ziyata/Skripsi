@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skripsi">
         <activity
+            android:name=".feature.admin.SafetyStockActivity"
+            android:exported="false" />
+        <activity
             android:name=".feature.admin.TopSellingActivity"
             android:exported="false" />
         <activity

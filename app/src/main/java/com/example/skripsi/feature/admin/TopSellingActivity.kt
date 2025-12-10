@@ -14,7 +14,7 @@ class TopSellingActivity : AppCompatActivity() {
 
     private val vm: TopSellingViewModel by viewModels {
         val db = AppDatabase.getDatabase(this)
-        val repo = AdminOrderRepository(db.transaksiDetailDao())
+        val repo = AdminOrderRepository(db.transaksiDetailDao(),db.barangDao())
         TopSellingViewModelFactory(repo)
     }
 

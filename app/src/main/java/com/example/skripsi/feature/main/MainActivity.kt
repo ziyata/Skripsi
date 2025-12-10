@@ -12,6 +12,7 @@ import androidx.camera.core.ExperimentalGetImage
 import com.example.skripsi.core.util.QrPng
 import com.example.skripsi.core.util.SessionManager
 import com.example.skripsi.databinding.ActivityMainBinding
+import com.example.skripsi.feature.admin.SafetyStockActivity
 import com.example.skripsi.feature.admin.TopSellingActivity
 import com.example.skripsi.feature.auth.LoginActivity
 import com.example.skripsi.feature.barang.ui.BarangActivity
@@ -91,6 +92,9 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnPesananMasuk.setOnClickListener {
             startActivity(Intent(this, AdminOrderActivity::class.java))
+        }
+        binding.btnSafetyStock.setOnClickListener {
+            startActivity(Intent(this, SafetyStockActivity::class.java))
         }
 
         // User

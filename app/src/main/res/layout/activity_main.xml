@@ -54,6 +54,12 @@
             android:text="Riwayat Transaksi" />
 
         <Button
+            android:id="@+id/btnSafetyStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Safety Stock" />
+
+        <Button
             android:id="@+id/btnGenerateQr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

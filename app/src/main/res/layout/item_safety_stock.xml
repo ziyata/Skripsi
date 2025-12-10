@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/tvNamaBarang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Barang"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvStok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stok: 0" />
+
+    <TextView
+        android:id="@+id/tvAvgDaily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rata-rata harian: 0" />
+
+    <TextView
+        android:id="@+id/tvSafety"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Safety stock: 0" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status: AMAN" />
+</LinearLayout>

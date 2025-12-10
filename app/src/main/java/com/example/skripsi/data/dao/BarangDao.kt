@@ -36,4 +36,7 @@ interface BarangDao {
     @Query("SELECT * FROM barang WHERE stok <= :minStok ORDER BY stok ASC")
     suspend fun getLowStock(minStok: Int = 5): List<BarangEntity>
 
+    @Query("SELECT * FROM barang ORDER BY id DESC")
+    suspend fun getAllOnce(): List<BarangEntity>
+
 }
