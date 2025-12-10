@@ -1,14 +1,10 @@
 package com.example.skripsi.feature.stok.ui
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.skripsi.R
 import com.example.skripsi.databinding.ActivityStockAdjustmentBinding
-import com.example.skripsi.databinding.ActivityStockHistoryBinding
 import com.example.skripsi.feature.stok.vm.StockViewModel
 import com.example.skripsi.feature.stok.vm.StockViewModelFactory
 

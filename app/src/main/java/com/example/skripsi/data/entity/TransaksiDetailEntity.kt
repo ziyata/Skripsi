@@ -15,5 +15,6 @@ data class TransaksiDetailEntity(
     val namaBarangSnapshot: String,
     val hargaSatuan: Long,
     val qty: Int,
-    val subtotal: Long
+    val subtotal: Long,
+    val createdAt: Long
 )

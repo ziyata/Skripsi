@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.skripsi.data.entity.StockMutationEntity
 import com.example.skripsi.databinding.ItemMutasiStokBinding
 import java.text.SimpleDateFormat
-import java.util.Locale
 import java.util.Date
+import java.util.Locale
 
 class MutasiAdapter : RecyclerView.Adapter<MutasiAdapter.VH>() {
     private val data = mutableListOf<StockMutationEntity>()

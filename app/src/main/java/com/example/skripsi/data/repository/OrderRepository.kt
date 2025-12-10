@@ -3,8 +3,18 @@ package com.example.skripsi.data.repository
 import android.content.Context
 import android.util.Log
 import com.example.skripsi.core.util.StockNotification
-import com.example.skripsi.data.dao.*
-import com.example.skripsi.data.entity.*
+import com.example.skripsi.data.dao.BarangDao
+import com.example.skripsi.data.dao.OrderDao
+import com.example.skripsi.data.dao.PaymentDao
+import com.example.skripsi.data.dao.StockMutationDao
+import com.example.skripsi.data.dao.TransaksiDetailDao
+import com.example.skripsi.data.dao.TransaksiHeaderDao
+import com.example.skripsi.data.entity.OrderDetailEntity
+import com.example.skripsi.data.entity.OrderHeaderEntity
+import com.example.skripsi.data.entity.PaymentEntity
+import com.example.skripsi.data.entity.StockMutationEntity
+import com.example.skripsi.data.entity.TransaksiDetailEntity
+import com.example.skripsi.data.entity.TransaksiHeaderEntity
 import com.example.skripsi.feature.order.ui.AdminOrderItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -20,8 +30,8 @@ class OrderRepository(
 
     suspend fun getOrCreateDraft(tableId: String?): Int = withContext(Dispatchers.IO) {
         val existing = orderDao.findDraft(tableId)
-        if (existing != null) existing.id else {
-            orderDao.insertHeader(
+        existing?.id
+            ?: orderDao.insertHeader(
                 OrderHeaderEntity(
                     id = 0,
                     status = "DRAFT",
@@ -30,7 +40,6 @@ class OrderRepository(
                     total = 0L
                 )
             ).toInt()
-        }
     }
 
     suspend fun addItem(orderId: Int, barangId: Int, qty: Int) = withContext(Dispatchers.IO) {
@@ -156,7 +165,8 @@ class OrderRepository(
                         namaBarangSnapshot = d.namaSnapshot,
                         hargaSatuan = d.hargaSatuan,
                         qty = d.qty,
-                        subtotal = d.subtotal
+                        subtotal = d.subtotal,
+                        createdAt = now
                     )
                 }
 

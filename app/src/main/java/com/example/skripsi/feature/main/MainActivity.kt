@@ -12,6 +12,7 @@ import androidx.camera.core.ExperimentalGetImage
 import com.example.skripsi.core.util.QrPng
 import com.example.skripsi.core.util.SessionManager
 import com.example.skripsi.databinding.ActivityMainBinding
+import com.example.skripsi.feature.admin.TopSellingActivity
 import com.example.skripsi.feature.auth.LoginActivity
 import com.example.skripsi.feature.barang.ui.BarangActivity
 import com.example.skripsi.feature.order.ui.AdminOrderActivity
@@ -122,6 +123,11 @@ class MainActivity : AppCompatActivity() {
             binding.btnRiwayatTransaksi.visibility = View.VISIBLE
             binding.btnPesananMasuk.visibility = View.VISIBLE
             binding.btnGenerateQr.visibility = View.VISIBLE
+
+
+            binding.btnPrediksi.setOnClickListener {
+                startActivity(Intent(this, TopSellingActivity::class.java))
+            }
 
             // Generate QR otomatis untuk semua barang
             binding.btnGenerateQr.setOnClickListener {

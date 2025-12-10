@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skripsi.data.entity.BarangEntity
 import com.example.skripsi.databinding.ItemAdminOrderBinding
-import com.example.skripsi.databinding.ItemBarangBinding
-import java.util.Locale
 
 class LowStockAdapter :
     ListAdapter<BarangEntity, LowStockAdapter.ViewHolder>(DiffCallback()) {

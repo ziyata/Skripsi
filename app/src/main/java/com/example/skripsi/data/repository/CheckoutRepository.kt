@@ -43,6 +43,8 @@ class CheckoutRepository(
             )
         ).toInt()
 
+        val now = System.currentTimeMillis()
+
         val details = items.map {
             TransaksiDetailEntity(
                 transaksiId = headerId,
@@ -50,7 +52,8 @@ class CheckoutRepository(
                 namaBarangSnapshot = it.barang.nama,
                 hargaSatuan = it.barang.harga,
                 qty = it.qty,
-                subtotal = it.subtotal
+                subtotal = it.subtotal,
+                createdAt = now
             )
         }
         detailDao.insertAll(details)

@@ -3,7 +3,6 @@ package com.example.skripsi.feature.checkout.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -11,11 +10,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.skripsi.R
 import com.example.skripsi.data.entity.BarangEntity
 import com.example.skripsi.databinding.ActivityCheckoutBinding
-import com.example.skripsi.databinding.ActivityLoginBinding
 import com.example.skripsi.feature.checkout.vm.CheckoutViewModel
 import com.example.skripsi.feature.checkout.vm.CheckoutViewModelFactory
 import com.example.skripsi.feature.transaksi.ui.TransaksiDetailActivity
@@ -37,8 +34,9 @@ class CheckoutActivity : AppCompatActivity() {
             val harga = data.getLongExtra(PilihBarangActivity.EXTRA_BARANG_HARGA, 0L)
             val qty = data.getIntExtra(PilihBarangActivity.EXTRA_QTY, 0)
 
+            val now = System.currentTimeMillis()
             if (id > 0 && !nama.isNullOrBlank() && harga > 0L && qty > 0) {
-                val barang = BarangEntity(id = id, nama = nama, harga = harga, stok = Int.MAX_VALUE)
+                val barang = BarangEntity(id = id, nama = nama, harga = harga, stok = Int.MAX_VALUE, createdAt = now)
                 viewModel.addToCart(barang, qty)
             }
         }

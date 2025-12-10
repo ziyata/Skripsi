@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.skripsi.core.db.AppDatabase
 import com.example.skripsi.data.entity.BarangEntity
-import com.example.skripsi.databinding.ActivityBarangBinding
 import com.example.skripsi.data.repository.BarangRepository
+import com.example.skripsi.databinding.ActivityBarangBinding
 import com.example.skripsi.feature.barang.vm.BarangViewModel
 import com.example.skripsi.feature.barang.vm.BarangViewModelFactory
 import java.text.NumberFormat
@@ -56,7 +56,9 @@ class BarangActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            viewModel.insert(BarangEntity(nama = nama, harga = harga, stok = stok))
+            val now = System.currentTimeMillis()
+
+            viewModel.insert(BarangEntity(nama = nama, harga = harga, stok = stok, createdAt = now))
             binding.etNama.text?.clear()
             binding.etHarga.text?.clear()
             binding.etStok.text?.clear()

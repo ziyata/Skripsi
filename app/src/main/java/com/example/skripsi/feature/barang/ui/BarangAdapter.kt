@@ -1,12 +1,12 @@
 package com.example.skripsi.feature.barang.ui
 
-import com.example.skripsi.data.entity.BarangEntity
-import com.example.skripsi.databinding.ItemBarangBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.skripsi.data.entity.BarangEntity
+import com.example.skripsi.databinding.ItemBarangBinding
 import java.util.Locale
 
 class BarangAdapter :

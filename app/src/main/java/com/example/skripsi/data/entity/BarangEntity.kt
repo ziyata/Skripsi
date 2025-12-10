@@ -9,5 +9,6 @@ data class BarangEntity(
     val id: Int = 0,
     val nama: String,
     val harga: Long,
-    var stok: Int
+    var stok: Int,
+    var createdAt: Long
 )

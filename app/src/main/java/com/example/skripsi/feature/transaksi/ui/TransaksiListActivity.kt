@@ -4,16 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.skripsi.R
+import com.example.skripsi.databinding.ActivityTransaksiListBinding
 import com.example.skripsi.feature.transaksi.vm.TransaksiListViewModel
 import com.example.skripsi.feature.transaksi.vm.TransaksiListViewModelFactory
-import androidx.recyclerview.widget.RecyclerView
-import com.example.skripsi.databinding.ActivityTransaksiListBinding
 
 class TransaksiListActivity : AppCompatActivity() {
 
