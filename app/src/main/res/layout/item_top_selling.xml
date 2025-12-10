@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:layout_margin="6dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp">
 
-    <TextView
-        android:id="@+id/tvNama"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nama Menu"
-        android:textStyle="bold"
-        android:textSize="16sp" />
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="#E0F8F5">
 
-    <TextView
-        android:id="@+id/tvQty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Terjual: 0" />
+        <TextView
+            android:id="@+id/tvNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nama_menu"
+            android:textStyle="bold"
+            android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/tvRevenue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pendapatan: Rp 0" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvQty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stok" />
+
+        <TextView
+            android:id="@+id/tvRevenue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pendapatan" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

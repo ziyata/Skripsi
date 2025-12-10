@@ -23,8 +23,8 @@ class AdminOrderAdapter(
             b.tvOrderId.text = "Order #${order.orderId}"
             b.tvTableId.text = if (order.tableId != null) "Meja: ${order.tableId}" else "Takeaway"
             b.tvTotal.text = "Total: ${CurrencyFormatter.rupiah(order.total)}"
-            b.tvMethod.text = "Metode: ${order.paymentMethod}"      // pastikan ada TextView ini di layout
-            b.tvStatus.text = "Status: ${order.paymentStatus}"      // dan ini juga
+            b.tvMethod.text = "Metode: ${order.paymentMethod}"
+            b.tvStatus.text = "Status: ${order.paymentStatus}"
             b.btnKonfirmasi.setOnClickListener { onConfirm(order) }
         }
     }

@@ -1,66 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginBottom="12dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardElevation="0dp">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="#E0F8F5">
 
         <TextView
             android:id="@+id/tvOrderId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Order #123"
+            android:text="Order #3"
             android:textStyle="bold"
-            android:textSize="16sp"/>
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tvTableId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Meja: 5"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
+            android:text="Meja: 1" />
 
         <TextView
             android:id="@+id/tvMethod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total: Rp 100.000"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
+            android:text="Metode: E-Wallet" />
 
         <TextView
             android:id="@+id/tvStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total: Rp 100.000"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
+            android:text="Status: Pending" />
 
         <TextView
             android:id="@+id/tvTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total: Rp 100.000"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
+            android:text="Total: Rp 20.000" />
+
 
         <Button
             android:id="@+id/btnKonfirmasi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#FFB800"
             android:text="Konfirmasi &amp; Bayar"
             android:layout_marginTop="8dp"/>
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
+
+

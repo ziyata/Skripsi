@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.skripsi.core.db.AppDatabase
 import com.example.skripsi.data.entity.BarangEntity
@@ -34,8 +35,11 @@ class BarangActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, factory)[BarangViewModel::class.java]
 
         val adapter = BarangAdapter()
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+
+        binding.recyclerView.apply {
+            layoutManager = GridLayoutManager(this@BarangActivity, 2)
+            this.adapter = adapter
+        }
 
         viewModel.allBarang.observe(this) { list ->
             adapter.submitList(list)

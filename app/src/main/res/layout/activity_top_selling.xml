@@ -1,23 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="#0866D6">
 
     <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
+        android:id="@+id/tvTitlePrediksi"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Menu Terlaris 7 Hari Terakhir"
+        android:text="@string/prediksi_stok"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textSize="18sp"
-        android:paddingBottom="8dp" />
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTopSelling"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvSubtitlePrediksi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_prediksi_stok"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitlePrediksi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPrediksi"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitlePrediksi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTopSelling"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

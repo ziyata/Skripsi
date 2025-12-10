@@ -19,7 +19,6 @@ import com.example.skripsi.feature.barang.ui.BarangActivity
 import com.example.skripsi.feature.order.ui.AdminOrderActivity
 import com.example.skripsi.feature.order.ui.OrderActivity
 import com.example.skripsi.feature.qr.QrActivity
-import com.example.skripsi.feature.stok.ui.LowStockActivity
 import com.example.skripsi.feature.transaksi.ui.TransaksiListActivity
 import java.io.File
 
@@ -101,18 +100,11 @@ class MainActivity : AppCompatActivity() {
         binding.btnScanQr.setOnClickListener {
             qrLauncher.launch(Intent(this, QrActivity::class.java))
         }
-//        binding.btnCheckout.setOnClickListener {
-//            startActivity(Intent(this, OrderActivity::class.java))
-//        }
 
         binding.btnLogout.setOnClickListener {
             session.logout()
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
-        }
-
-        binding.btnPenyesuaianStok.setOnClickListener {
-            startActivity(Intent(this, LowStockActivity::class.java))
         }
     }
 
@@ -120,16 +112,16 @@ class MainActivity : AppCompatActivity() {
         val role = session.userRole
         if (role.equals("ADMIN", ignoreCase = true)) {
             // Tampilkan menu admin
-            binding.tvAdminSection.visibility = View.VISIBLE
+            binding.tvMenuAdmin.visibility = View.VISIBLE
             binding.btnKelolaBarang.visibility = View.VISIBLE
-            binding.btnPenyesuaianStok.visibility = View.VISIBLE
-            binding.btnPrediksi.visibility = View.VISIBLE
+            binding.btnPrediksiStok.visibility = View.VISIBLE
             binding.btnRiwayatTransaksi.visibility = View.VISIBLE
             binding.btnPesananMasuk.visibility = View.VISIBLE
             binding.btnGenerateQr.visibility = View.VISIBLE
+            binding.btnSafetyStock.visibility = View.VISIBLE
 
 
-            binding.btnPrediksi.setOnClickListener {
+            binding.btnPrediksiStok.setOnClickListener {
                 startActivity(Intent(this, TopSellingActivity::class.java))
             }
 
@@ -166,22 +158,19 @@ class MainActivity : AppCompatActivity() {
 
 
             // Sembunyikan menu user
-            binding.tvUserSection.visibility = View.GONE
+            binding.tvMenuUser.visibility = View.GONE
             binding.btnScanQr.visibility = View.GONE
-//            binding.btnCheckout.visibility = View.GONE
         } else {
             // Default user
-            binding.tvAdminSection.visibility = View.GONE
+            binding.tvMenuAdmin.visibility = View.GONE
             binding.btnKelolaBarang.visibility = View.GONE
-            binding.btnPenyesuaianStok.visibility = View.GONE
-            binding.btnPrediksi.visibility = View.GONE
+            binding.btnPrediksiStok.visibility = View.GONE
             binding.btnRiwayatTransaksi.visibility = View.GONE
             binding.btnPesananMasuk.visibility = View.GONE
             binding.btnGenerateQr.visibility = View.GONE
-
-            binding.tvUserSection.visibility = View.VISIBLE
+            binding.btnSafetyStock.visibility = View.GONE
+            binding.tvMenuUser.visibility = View.VISIBLE
             binding.btnScanQr.visibility = View.VISIBLE
-//            binding.btnCheckout.visibility = View.VISIBLEF
         }
     }
 }

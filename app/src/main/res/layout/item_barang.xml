@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8dp"
-    android:elevation="3dp"
-    android:gravity="center"
-    android:background="@drawable/bg_card"
-    android:layout_margin="4dp"
-    android:paddingTop="@dimen/status_bar_padding"
-    android:clipToPadding="false">
+    android:layout_margin="6dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp">
 
-    <TextView
-        android:id="@+id/tvNamaBarang"
-        android:text="Nama Barang"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:gravity="center"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="#E0F8F5">
 
-    <TextView
-        android:id="@+id/tvHargaBarang"
-        android:text="Rp 0"
-        android:textColor="#666"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvNamaBarang"
+            android:text="@string/nama_barang"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tvStokBarang"
-        android:text="Stok: 0"
-        android:textSize="12sp"
-        android:textColor="#888"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvHargaBarang"
+            android:text="@string/harga"
+            android:textColor="#666"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvStokBarang"
+            android:text="@string/stok"
+            android:textSize="12sp"
+            android:textColor="#888"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

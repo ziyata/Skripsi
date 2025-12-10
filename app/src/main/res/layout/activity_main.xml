@@ -1,104 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/status_bar_padding"
-    android:fitsSystemWindows="true">
+    android:background="#0866D6">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:text="@string/pos"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/tvWelcome"
+    <TextView
+        android:id="@+id/tvMenuAdmin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/admin"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMenuUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/user"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMenu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tvMenuAdmin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="12dp"
-            android:text="POS"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent">
 
-        <!-- Admin section -->
-        <TextView
-            android:id="@+id/tvAdminSection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:text="Menu Admin"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
 
-        <Button
-            android:id="@+id/btnKelolaBarang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kelola Barang" />
+                <Button
+                    android:id="@+id/btnKelolaBarang"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:backgroundTint="#FFB800"
+                    android:text="@string/kelola_barang"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btnPenyesuaianStok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Penyesuaian Stok (IN/Adjust)" />
+                <Button
+                    android:id="@+id/btnPrediksiStok"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="#FFB800"
+                    android:text="@string/prediksi_stok"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btnPrediksi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Prediksi Stok" />
+                <Button
+                    android:id="@+id/btnRiwayatTransaksi"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="#FFB800"
+                    android:text="@string/riwayat_transaksi"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btnRiwayatTransaksi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Riwayat Transaksi" />
+                <Button
+                    android:id="@+id/btnSafetyStock"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="#FFB800"
+                    android:text="@string/safety_stock"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btnSafetyStock"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Safety Stock" />
+                <Button
+                    android:id="@+id/btnGenerateQr"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="#FFB800"
+                    android:text="@string/generate_qr"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btnGenerateQr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Generate Qr" />
+                <Button
+                    android:id="@+id/btnScanQr"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:backgroundTint="#FFB800"
+                    android:text="@string/scan_qr"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
-        <!-- User section -->
-        <TextView
-            android:id="@+id/tvUserSection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="16dp"
-            android:text="Menu User"
-            android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="#FFB800"
+                    android:text="@string/logout"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btnScanQr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Scan QR" />
+                <Button
+                    android:id="@+id/btnPesananMasuk"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="#FFB800"
+                    android:text="@string/pesanan_masuk"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
-<!--        <Button-->
-<!--            android:id="@+id/btnCheckout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Checkout (Kasir)" />-->
+            </LinearLayout>
+        </ScrollView>
 
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Logout" />
+    </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/btnPesananMasuk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Pesanan Masuk" />
-
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

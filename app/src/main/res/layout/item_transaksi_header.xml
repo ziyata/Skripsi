@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="10dp"
-    android:orientation="vertical"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/status_bar_padding"
-    android:clipToPadding="false">
+    android:layout_margin="6dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp">
 
-    <TextView
-        android:id="@+id/tvTanggal"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="28 Okt 2025 10:00" />
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="#E0F8F5">
 
-    <TextView
-        android:id="@+id/tvMetodeStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CASH • PAID" />
+        <TextView
+            android:id="@+id/tvTanggal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tanggal"
+            android:textStyle="bold"
+            android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/tvTotal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rp 0"
-        android:textStyle="bold" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvMetodeStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/metode_pembayaran" />
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/total_pembayaran" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

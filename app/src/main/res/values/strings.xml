@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">Skripsi</string>
+    <string name="subtitle_login"><![CDATA[Please fill Username & Password]]></string>
+    <string name="title_login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="button_login">Login Now</string>
+    <string name="pos">Point Of Sales</string>
+    <string name="admin">Admin</string>
+    <string name="user">User</string>
+    <string name="kelola_barang">Kelola Barang</string>
+    <string name="prediksi_stok">Prediksi Stok</string>
+    <string name="riwayat_transaksi">Riwayat Transaksi</string>
+    <string name="safety_stock">Safety Stock</string>
+    <string name="generate_qr">Generate Qr</string>
+    <string name="scan_qr">Scan QR</string>
+    <string name="logout">Logout</string>
+    <string name="pesanan_masuk">Pesanan Masuk</string>
+    <string name="tambah_barang">Tambah Barang</string>
+    <string name="nama_barang">Nama Barang</string>
+    <string name="harga">Harga</string>
+    <string name="stok">Stok</string>
+    <string name="tambah">Tambah</string>
+    <string name="title_prediksi_stok">Menu Terlaris dalam 7 hari terakhir</string>
+    <string name="nama_menu">Nama Menu</string>
+    <string name="pendapatan">Pendapatan: Rp 0</string>
+    <string name="cari_riwayat_transaksi">Cari Riwayat Transaksi</string>
+    <string name="hari_ini">hari ini</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="metode_pembayaran">Metode pembayaran</string>
+    <string name="status_pembayaran">Status pembayaran</string>
+    <string name="total_pembayaran">Total pembayaran</string>
+    <string name="detail_riwayat">Detail Riwayat</string>
+    <string name="subtitle_detail_riwayat">Metode: TRANSFER - Tanggal: 10 Des 2025 21:00</string>
 </resources>

@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.skripsi.databinding.ActivityTransaksiListBinding
 import com.example.skripsi.feature.transaksi.vm.TransaksiListViewModel
@@ -34,7 +35,7 @@ class TransaksiListActivity : AppCompatActivity() {
         }
 
         binding.apply {
-            rvTransaksi.layoutManager = LinearLayoutManager(this@TransaksiListActivity); rvTransaksi.adapter = adapter
+            rvTransaksi.layoutManager = GridLayoutManager(this@TransaksiListActivity, 2); rvTransaksi.adapter = adapter
 
             vm.filtered.observe(this@TransaksiListActivity) { adapter.submit(it) }
 

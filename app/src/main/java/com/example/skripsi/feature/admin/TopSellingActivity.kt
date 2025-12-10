@@ -3,6 +3,7 @@ package com.example.skripsi.feature.admin
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.skripsi.core.db.AppDatabase
 import com.example.skripsi.data.repository.AdminOrderRepository
@@ -34,8 +35,9 @@ class TopSellingActivity : AppCompatActivity() {
 
     private fun setupRecycler() {
         binding.rvTopSelling.apply {
-            layoutManager = LinearLayoutManager(this@TopSellingActivity)
+            layoutManager = GridLayoutManager(this@TopSellingActivity, 2)
             adapter = TopSellingAdapter()
         }
     }
+
 }

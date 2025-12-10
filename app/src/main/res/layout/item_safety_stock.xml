@@ -1,39 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp">
 
-    <TextView
-        android:id="@+id/tvNamaBarang"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nama Barang"
-        android:textStyle="bold"
-        android:textSize="16sp" />
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="#E0F8F5">
 
-    <TextView
-        android:id="@+id/tvStok"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Stok: 0" />
+        <TextView
+            android:id="@+id/tvNamaBarang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kopi"
+            android:textStyle="bold"
+            android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/tvAvgDaily"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rata-rata harian: 0" />
+        <TextView
+            android:id="@+id/tvStok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stok: 2" />
 
-    <TextView
-        android:id="@+id/tvSafety"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Safety stock: 0" />
+        <TextView
+            android:id="@+id/tvAvgDaily"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rata-rata harian: 9,0" />
 
-    <TextView
-        android:id="@+id/tvStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Status: AMAN" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/status_pembayaran" />
+
+        <TextView
+            android:id="@+id/tvSafety"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status: Rawan" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
