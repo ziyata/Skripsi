@@ -1,86 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:padding="12dp"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0866D6">
 
+    <!-- Judul di area biru -->
     <TextView
-        android:id="@+id/tvMenuTitle"
-        android:layout_width="match_parent"
+        android:id="@+id/tvTitleUser"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Menu"
+        android:text="Dashboard User"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textSize="16sp"
-        android:padding="4dp"/>
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMenu"
-        android:layout_width="match_parent"
+    <!-- Card putih isi pembayaran -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPayment"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleUser"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/tvOrderTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pesanan (DRAFT)"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:padding="4dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvItems"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+            <!-- Menu -->
+            <TextView
+                android:id="@+id/tvMenuTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Menu"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:paddingBottom="8dp" />
 
-    <TextView
-        android:id="@+id/tvTotal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Total: Rp 0"
-        android:textSize="16sp"
-        android:padding="4dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMenu"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingBottom="8dp" />
 
-    <RadioGroup
-        android:id="@+id/rgPayment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="4dp">
+            <!-- Pesanan (Draft) -->
+            <TextView
+                android:id="@+id/tvOrderTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pesanan (Draft)"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
 
-        <RadioButton
-            android:id="@+id/rbCash"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Tunai" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvItems"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
-        <RadioButton
-            android:id="@+id/rbEwallet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="E-Wallet" />
-    </RadioGroup>
+            <!-- Total -->
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total: Rp 0"
+                android:textSize="16sp"
+                android:paddingTop="8dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
+            <!-- Metode pembayaran -->
+            <RadioGroup
+                android:id="@+id/rgPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="4dp">
 
-        <Button
-            android:id="@+id/btnScanTambah"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Scan Tambah" />
+                <RadioButton
+                    android:id="@+id/rbCash"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tunai" />
 
-        <Button
-            android:id="@+id/btnKirim"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Kirim (UNPAID)" />
-    </LinearLayout>
-</LinearLayout>
+                <RadioButton
+                    android:id="@+id/rbEwallet"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Non-Tunai" />
+            </RadioGroup>
+
+            <!-- Tombol Bayar (1 tombol, warna kuning) -->
+            <Button
+                android:id="@+id/btnKirim"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:text="Bayar"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#FFB800" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

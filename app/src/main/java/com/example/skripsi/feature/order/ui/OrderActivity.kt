@@ -112,11 +112,6 @@ class OrderActivity : AppCompatActivity() {
         // Muat semua menu dari database
         loadMenuFromDb()
 
-        // Tombol Scan (kalau mau gunakan untuk scan meja lagi)
-        binding.btnScanTambah.setOnClickListener {
-            qrLauncher.launch(Intent(this, QrActivity::class.java))
-        }
-
         // Kirim jadi UNPAID
         binding.btnKirim.setOnClickListener {
             val id = vm.orderId

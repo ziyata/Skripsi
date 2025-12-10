@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:padding="8dp"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="4dp">
 
     <TextView
         android:id="@+id/tvNama"
-        android:layout_width="0dp" android:layout_height="wrap_content"
-        android:layout_weight="2" android:text="Nama" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2.2"
+        android:text="@string/nama_barang"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvQty"
-        android:layout_width="0dp" android:layout_height="wrap_content"
-        android:layout_weight="1" android:text="1" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.6"
+        android:gravity="center"
+        android:text="@string/stok" />
 
     <TextView
         android:id="@+id/tvHarga"
-        android:layout_width="0dp" android:layout_height="wrap_content"
-        android:layout_weight="1" android:text="Rp 0" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.3"
+        android:gravity="end"
+        android:text="@string/harga" />
 
     <TextView
         android:id="@+id/tvSubtotal"
-        android:layout_width="0dp" android:layout_height="wrap_content"
-        android:layout_weight="1" android:text="Rp 0" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.3"
+        android:gravity="end"
+        android:text="@string/harga" />
 </LinearLayout>
