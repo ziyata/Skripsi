@@ -5,7 +5,7 @@
 <!--        <item name="android:navigationBarColor">?attr/colorSurface</item>-->
 <!--        <item name="android:windowFullscreen">false</item>-->
 <!--    </style>-->
-    <style name="Base.Theme.Skripsi" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Skripsi" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowFullscreen">false</item>
     </style>
 

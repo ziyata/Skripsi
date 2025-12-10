@@ -93,19 +93,21 @@
                 android:orientation="horizontal"
                 android:paddingTop="4dp">
 
-                <RadioButton
+                <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rbCash"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Tunai" />
+                    android:text="Tunai"
+                    android:buttonTint="@color/radio_tint"/>
 
-                <RadioButton
+                <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rbEwallet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Non-Tunai" />
+                    android:text="Non-Tunai"
+                    android:buttonTint="@color/radio_tint"/>
             </RadioGroup>
 
             <!-- Tombol Bayar (1 tombol, warna kuning) -->

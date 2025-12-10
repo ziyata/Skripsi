@@ -24,9 +24,6 @@
             android:name=".feature.admin.TopSellingActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.stok.ui.LowStockActivity"
-            android:exported="false" />
-        <activity
             android:name=".feature.order.ui.AdminOrderActivity"
             android:exported="false" />
         <activity
